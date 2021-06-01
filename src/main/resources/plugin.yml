@@ -1,3 +1,6 @@
 name: HideAllPlayers
 main: HideAllPlayers
 version: 0.1
+commands:
+  hideplayers:
+  showplayers:
