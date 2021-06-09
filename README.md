@@ -1,5 +1,3 @@
-This plugin is not ready yet!
-
 # HideAllPlayers
 Bukkit plugin for hiding players for you.
 
