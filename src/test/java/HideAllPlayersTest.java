@@ -1,6 +1,6 @@
 import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
-import org.bukkit.entity.Player;
+import be.seeseemelk.mockbukkit.entity.PlayerMock;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,14 +10,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class HideAllPlayersTest {
     private ServerMock server;
-    private HideAllPlayers plugin;
-    private Player player1;
-    private Player player2;
+    private PlayerMock player1;
+    private PlayerMock player2;
+
     @Before
     public void setUp()
     {
         server = MockBukkit.mock();
-        plugin = (HideAllPlayers) MockBukkit.load(HideAllPlayers.class);
+        MockBukkit.load(HideAllPlayers.class);
         player1 = server.addPlayer();
         player2 = server.addPlayer();
     }
@@ -45,6 +45,11 @@ public class HideAllPlayersTest {
 
     @Test
     public void onPlayerExitWithHidingPlayersOn(){
-
+        player1.performCommand("hideplayers");
+        server.removePlayer(player1);
+        server.addPlayer(player1);
+        assertTrue(player1.canSee(player2));
+        player2 = server.addPlayer();
+        assertTrue(player1.canSee(player2));
     }
 }
